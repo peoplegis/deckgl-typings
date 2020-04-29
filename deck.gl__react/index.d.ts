@@ -4,29 +4,44 @@ declare module '@deck.gl/react/utils/inherits-from' {
 
 }
 declare module '@deck.gl/react/deckgl' {
-	import { DeckProps } from '@deck.gl/core/lib/deck';
+	import Deck, { DeckProps } from '@deck.gl/core/lib/deck';
 	import * as React from 'react';
+
 	type ReactDeckProps = DeckProps & {
 		ContextProvider?: React.Provider<any>;
 	}
+
 	export default class DeckGL extends React.Component<ReactDeckProps, {}> {
+		public readonly deck: Deck;
+
 		constructor(props: ReactDeckProps);
+
 		componentDidMount(): void;
+
 		shouldComponentUpdate(nextProps: any): boolean;
+
 		componentDidUpdate(): void;
+
 		componentWillUnmount(): void;
+
 		pickObject(opts: any): any;
+
 		pickMultipleObjects(opts: any): any;
+
 		pickObjects(opts: any): any;
+
 		_redrawDeck(): void;
+
 		_customRender(redrawReason: any): void;
+
 		_parseJSX(props: any): any;
+
 		_updateFromProps(props: any): void;
+
 		render(): import("react").DetailedReactHTMLElement<{
 			id: string;
 		}, HTMLElement>;
 	}
-
 }
 
 declare module '@deck.gl/react/utils/extract-jsx-layers' {

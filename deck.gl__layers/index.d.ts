@@ -191,16 +191,19 @@ declare module '@deck.gl/layers/icon-layer/icon-layer' {
 		iconMapping?: IconMapping,
 		sizeScale?: number,
 		fp64?: number,
+		sizeMinPixels?: number;
+		sizeMaxPixels?: number;
+		sizeUnits?: string;
 
 		/*
 		*  returns anchor position of the icon, in [lng, lat, z]
 		*/
-		getPosition?: ((x: D) => Position),
+		getPosition?: (x: D) => Position,
 
 		/*
 		*  returns icon name as a string
 		*/
-		getIcon?: ((x: D) => string) | string,
+		getIcon?: (x: D) => string | object,
 
 		/*
 		*  returns color of the icon in [r, g, b, a].

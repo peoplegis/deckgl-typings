@@ -63,3 +63,6 @@ typings/
 # ignore for now
 package-lock.json
 yarn.lock
+
+# intellij project files
+.idea
