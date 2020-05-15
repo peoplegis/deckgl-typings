@@ -1099,6 +1099,7 @@ declare module '@deck.gl/core/lib/layer' {
 	import AttributeManager from '@deck.gl/core/lib/attribute-manager';
 	import Component from '@deck.gl/core/lifecycle/component';
 	import { PickingInfo } from '@deck.gl/core/lib/deck';
+	import { PickInfo, PickParams } from '@deck.gl/core/lib/picking/pick-info';
 	import * as hammerjs from 'hammerjs';
 	import { RGBAColor } from "@deck.gl/aggregation-layers/utils/color-utils";
 
@@ -1225,10 +1226,7 @@ declare module '@deck.gl/core/lib/layer' {
 
 		draw(opts: any): void;
 
-		getPickingInfo({ info, mode }: {
-			info: any;
-			mode: any;
-		}): any;
+		getPickingInfo({ info, mode }: PickParams): PickInfo;
 
 		invalidateAttribute(name?: string, diffReason?: string): void;
 
@@ -2374,6 +2372,20 @@ declare module '@deck.gl/core/lib/picking/query-object' {
 
 }
 declare module '@deck.gl/core/lib/picking/pick-info' {
+	interface PickInfo {
+		color: [number, number, number, number];
+		coordinate: [number, number];
+		index: number;
+		picked: boolean;
+		x: number;
+		y: number;
+	}
+
+	interface PickParams {
+		info: PickInfo;
+		mode: 'hover' | 'click';
+	}
+
 	export function processPickInfo({ pickInfo, lastPickedInfo, mode, layers, viewports, x, y, deviceX, deviceY, pixelRatio }: {
 		pickInfo: any;
 		lastPickedInfo: any;
@@ -2979,6 +2991,7 @@ declare module '@deck.gl/core' {
 		memoize: typeof memoize;
 	};
 
+	export { PickInfo, PickParams } from '@deck.gl/core/lib/picking/pick-info';
 }
 declare module '@deck.gl/core/utils/color' {
 	export type Color = [ number, number, number ] | [ number, number, number, number ];
